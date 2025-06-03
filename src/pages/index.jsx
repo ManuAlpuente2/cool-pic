@@ -53,6 +53,19 @@ const Home = () => {
   return (
     <div className="home-container">
       <Header />
+      {!user && (
+        <section className="hero">
+          <h1 className="hero__title">¡Dale vida a tus fotos!</h1>
+          <p className="hero__subtitle">
+            Haz login ahora y consigue 3 tokens gratis para aplicar filtros
+            increíbles a tus fotos
+          </p>
+          <button onClick={() => navigate("/login")} className="hero__button">
+            <span className="hero__button__icon">✨</span>
+            <span>Hacer login</span>
+          </button>
+        </section>
+      )}
       <main className="main-content">
         <h2>Filtros fotográficos</h2>
         <FilterList filters={filters} />
