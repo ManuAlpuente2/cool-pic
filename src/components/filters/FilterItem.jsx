@@ -1,11 +1,23 @@
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
 import "./FilterItem.scss";
 
 const FilterItem = memo(({ filter }) => {
-  const { name, thumbnail, isFeatured, isNew } = filter;
+  const navigate = useNavigate();
+  const { id, name, thumbnail, isFeatured, isNew } = filter;
+
+  const handleClick = () => {
+    navigate(`/filter/${id}`);
+  };
 
   return (
-    <article className="filter-item">
+    <article
+      className="filter-item"
+      onClick={handleClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && handleClick()}
+    >
       <div className="filter-item__image-wrapper">
         <img
           src={thumbnail}

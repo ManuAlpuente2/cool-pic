@@ -1,17 +1,22 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
+import { FiltersProvider } from "./contexts/FiltersContext";
 import Home from "./pages/index";
 import Login from "./pages/login";
+import Filter from "./pages/filter";
 import "./App.css";
 
 const App = () => {
   return (
     <Router>
       <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <FiltersProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/filter/:id" element={<Filter />} />
+          </Routes>
+        </FiltersProvider>
       </AuthProvider>
     </Router>
   );

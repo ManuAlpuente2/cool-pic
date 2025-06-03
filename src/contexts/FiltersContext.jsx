@@ -1,11 +1,25 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import filtersData from "../mocks/filters.js";
 
 const FiltersContext = createContext();
 
 export const FiltersProvider = ({ children }) => {
-  // Aquí podríamos añadir lógica para cargar los filtros desde una API
-  const filters = filtersData;
+  const [filters, setFilters] = useState(null);
+
+  useEffect(() => {
+    // Simulamos una carga asíncrona de los filtros
+    const loadFilters = async () => {
+      try {
+        // Aquí podríamos cargar los filtros desde una API
+        setFilters(filtersData);
+      } catch (error) {
+        console.error("Error loading filters:", error);
+        setFilters([]);
+      }
+    };
+
+    loadFilters();
+  }, []);
 
   return (
     <FiltersContext.Provider value={{ filters }}>

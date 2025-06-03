@@ -9,20 +9,39 @@ const Filter = () => {
   const navigate = useNavigate();
   const { filters } = useFilters();
 
+  console.log("Filter page - ID:", id);
+  console.log("Filter page - Filters:", filters);
+
+  // Si no hay filtros aún, mostramos el skeleton
+  if (!filters) {
+    console.log("Filter page - No filters available yet");
+    return <FilterSkeleton />;
+  }
+
   // Encontrar el filtro por ID
-  const filter = filters.find((f) => f.id === id);
+  const filter = filters.find((f) => f.id === parseInt(id));
+
+  console.log("Filter page - Found filter:", filter);
 
   // Si no hay filtro, mostramos el skeleton
   if (!filter) {
+    console.log("Filter page - No filter found with ID:", id);
     return <FilterSkeleton />;
   }
 
   const { name, thumbnail, description } = filter;
 
+  const handleApplyFilter = () => {
+    // TODO: Implementar lógica para aplicar el filtro
+    console.log("Aplicando filtro:", name);
+  };
+
   return (
     <div className="filter-page">
-      <Header title={name} />
+      <Header />
+
       <main className="filter-page__content">
+        <h1 className="filter-page__title">{name}</h1>
         <div className="filter-page__preview">
           <img
             src={thumbnail}
@@ -33,12 +52,18 @@ const Filter = () => {
 
         <div className="filter-page__info">
           <p className="filter-page__description">{description}</p>
+          <div className="filter-page__placeholder">
+            <p className="filter-page__placeholder-text">
+              Sube una foto para aplicar este filtro
+            </p>
+          </div>
 
           <button
             className="apply-button"
+            onClick={handleApplyFilter}
             aria-label={`Aplicar el filtro ${name}`}
           >
-            Aplicar este filtro
+            ✨ Aplicar a mi foto
           </button>
         </div>
       </main>
