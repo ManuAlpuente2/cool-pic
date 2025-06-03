@@ -31,7 +31,7 @@ const Header = ({ title = "Cool Pic" }) => {
           <span>Volver</span>
         </button>
       ) : (
-        <h1>{title}</h1>
+        <h1 onClick={() => navigate("/")}>{title}</h1>
       )}
       <div className="user-info">
         {user ? (
