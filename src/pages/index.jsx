@@ -25,7 +25,7 @@ const Home = () => {
               <span>Welcome, {user.email}</span>
               <button
                 onClick={handleSignOut}
-                className="button sign-out-button"
+                className="button button-sign-out"
               >
                 Sign Out
               </button>
@@ -33,7 +33,7 @@ const Home = () => {
           ) : (
             <button
               onClick={() => navigate("/login")}
-              className="button sign-in-button"
+              className="button button-sign-in"
             >
               Sign in
             </button>
