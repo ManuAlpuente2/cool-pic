@@ -18,6 +18,11 @@ const Home = () => {
     }
   };
 
+  const handleUpload = () => {
+    // TODO: Implementar lógica de subida
+    console.log("Subir foto");
+  };
+
   // Aseguramos que filtersData sea un array
   const filters = Array.isArray(filtersData) ? filtersData : [];
 
@@ -50,6 +55,14 @@ const Home = () => {
         <h2>Filtros fotográficos</h2>
         <FilterList filters={filters} />
       </main>
+      <button
+        onClick={handleUpload}
+        className="upload-button"
+        aria-label="Subir nueva foto"
+      >
+        <span className="upload-button__icon">✨</span>
+        <span className="upload-button__text">Subir foto</span>
+      </button>
     </div>
   );
 };

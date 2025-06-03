@@ -1,6 +1,7 @@
 .home-container {
   min-height: 100vh;
   background: var(--color-background);
+  position: relative;
 }
 
 .header {
@@ -61,5 +62,44 @@
   &-sign-out {
     background: var(--color-error);
     color: var(--color-white);
+  }
+}
+
+.upload-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  z-index: 100;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &__icon {
+    font-size: 1.25rem;
+  }
+
+  &__text {
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 }
