@@ -1,0 +1,51 @@
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-background) 25%,
+    var(--color-white) 50%,
+    var(--color-background) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 0.5rem;
+}
+
+.filter-page {
+  .back-button.skeleton {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+  }
+
+  .filter-page__title.skeleton {
+    height: 2rem;
+    width: 200px;
+  }
+
+  .filter-page__preview.skeleton {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 1rem;
+  }
+
+  .filter-page__description.skeleton {
+    height: 4rem;
+    margin-bottom: 2rem;
+  }
+
+  .apply-button.skeleton {
+    height: 3rem;
+    width: 200px;
+    margin: 0 auto;
+    border-radius: 2rem;
+  }
+}
