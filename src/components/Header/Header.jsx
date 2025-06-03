@@ -1,11 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { auth } from "../../lib/firebase";
 import "./Header.scss";
 
 const Header = ({ title = "Cool Pic" }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
+
+  const isFilterPage = location.pathname.startsWith("/filter/");
 
   const handleSignOut = async () => {
     try {
@@ -16,9 +19,20 @@ const Header = ({ title = "Cool Pic" }) => {
     }
   };
 
+  const handleBack = () => {
+    navigate("/");
+  };
+
   return (
     <header className="header">
-      <h1>{title}</h1>
+      {isFilterPage ? (
+        <button onClick={handleBack} className="header__back-button">
+          <span className="header__back-icon">←</span>
+          <span>Volver</span>
+        </button>
+      ) : (
+        <h1>{title}</h1>
+      )}
       <div className="user-info">
         {user ? (
           <>
