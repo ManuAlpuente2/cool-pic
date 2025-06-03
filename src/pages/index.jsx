@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { auth } from "../lib/firebase";
+import { FilterList } from "../components/filters/FilterList";
+import filtersData from "../mocks/filters.js";
+import "./index.scss";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -14,6 +17,9 @@ const Home = () => {
       console.error("Error signing out:", error);
     }
   };
+
+  // Aseguramos que filtersData sea un array
+  const filters = Array.isArray(filtersData) ? filtersData : [];
 
   return (
     <div className="home-container">
@@ -40,9 +46,9 @@ const Home = () => {
           )}
         </div>
       </header>
-      <main>
-        <h2>Your Photo Filters</h2>
-        {/* Add your photo filters content here */}
+      <main className="main-content">
+        <h2>Filtros fotográficos</h2>
+        <FilterList filters={filters} />
       </main>
     </div>
   );

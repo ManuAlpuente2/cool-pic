@@ -65,3 +65,12 @@ Eres un asistente experto en desarrollo web con React y Firebase. Quiero montar 
    - Ejemplo de API route `/pages/api/auth/session.js` que recibe el token, lo verifica y responde con `{ uid, email }` o error 401.
 
 Por favor, genera todos los archivos necesarios (React, componentes, configuración de Firebase) y asegúrate de que al ejecutar `npm run dev` se pueda navegar a `/login` y autenticar con Google o Apple. No es necesario incluir estilos complejos, puede usarse CSS mínimo. Sé lo más concreto posible con el código, incluyendo comentarios donde haga falta.
+
+
+# PROMTP 3 (Claude sonet-3.7)
+
+He creado un mock de la información que espero recibir en el futuro desde back para mi app de filtros fotográficos.
+
+Quiero que crees un componente <FilterList> que sea un grid de cards (<FilterItem>) en el que se mostrará el thumbnail, el nombre del filtro y badges cuando sean "isFeatured" o "isNew". 
+
+El componente <FilterList> debe mostrarse en la página index.jsx tanto si el usuario está logado como si no
