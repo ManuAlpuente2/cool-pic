@@ -23,27 +23,70 @@
 
   &__badges {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 0.75rem;
+    right: 0.75rem;
     display: flex;
     gap: 0.5rem;
+    z-index: 1;
   }
 
   &__badge {
-    padding: 0.25rem 0.5rem;
-    border-radius: 1rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 1.5rem;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 
     &--featured {
       background: var(--color-primary);
       color: var(--color-white);
+      animation: pulse 2s infinite;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: "★";
+        margin-right: 0.25rem;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, transparent, rgba(0, 0, 0, 0.2));
+        pointer-events: none;
+      }
     }
 
     &--new {
       background: var(--color-accent);
       color: var(--color-white);
+      animation: bounce 2s infinite;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: "✨";
+        margin-right: 0.25rem;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, transparent, rgba(0, 0, 0, 0.2));
+        pointer-events: none;
+      }
     }
   }
 
@@ -53,5 +96,27 @@
     font-size: 1rem;
     font-weight: 500;
     color: var(--color-text);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
   }
 }
