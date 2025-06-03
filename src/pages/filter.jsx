@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useFilters } from "../contexts/FiltersContext";
 import { Header } from "../components/Header/Header";
@@ -8,6 +9,7 @@ const Filter = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { filters } = useFilters();
+  const fileInputRef = useRef(null);
 
   console.log("Filter page - ID:", id);
   console.log("Filter page - Filters:", filters);
@@ -31,14 +33,45 @@ const Filter = () => {
 
   const { name, thumbnail, description } = filter;
 
-  const handleApplyFilter = () => {
-    // TODO: Implementar lógica para aplicar el filtro
-    console.log("Aplicando filtro:", name);
+  const handleUpload = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Validar tipo de archivo
+    if (!file.type.startsWith("image/")) {
+      alert("Por favor, selecciona una imagen válida");
+      return;
+    }
+
+    // Crear URL de la imagen
+    const imageUrl = URL.createObjectURL(file);
+
+    // Navegar a la página de preview con el ID del filtro
+    navigate("/preview", {
+      state: {
+        image: imageUrl,
+        fileName: file.name,
+        filterId: id,
+      },
+    });
   };
 
   return (
     <div className="filter-page">
       <Header />
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        accept="image/*"
+        capture="environment"
+        className="hidden-input"
+        aria-hidden="true"
+      />
 
       <main className="filter-page__content">
         <h1 className="filter-page__title">{name}</h1>
@@ -60,10 +93,10 @@ const Filter = () => {
 
           <button
             className="apply-button"
-            onClick={handleApplyFilter}
-            aria-label={`Aplicar el filtro ${name}`}
+            onClick={handleUpload}
+            aria-label={`Subir foto para aplicar el filtro ${name}`}
           >
-            ✨ Aplicar a mi foto
+            ✨ Subir foto
           </button>
         </div>
       </main>

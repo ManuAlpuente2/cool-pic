@@ -4,6 +4,7 @@ import { FiltersProvider } from "./contexts/FiltersContext";
 import Home from "./pages/index";
 import Login from "./pages/login";
 import Filter from "./pages/filter";
+import Preview from "./pages/preview";
 import "./App.css";
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/filter/:id" element={<Filter />} />
+            <Route path="/preview" element={<Preview />} />
           </Routes>
         </FiltersProvider>
       </AuthProvider>

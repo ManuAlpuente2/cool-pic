@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { auth } from "../lib/firebase";
@@ -9,6 +10,7 @@ import "./index.scss";
 const Home = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const fileInputRef = useRef(null);
 
   const handleSignOut = async () => {
     try {
@@ -20,8 +22,29 @@ const Home = () => {
   };
 
   const handleUpload = () => {
-    // TODO: Implementar lógica de subida
-    console.log("Subir foto");
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Validar tipo de archivo
+    if (!file.type.startsWith("image/")) {
+      alert("Por favor, selecciona una imagen válida");
+      return;
+    }
+
+    // Crear URL de la imagen
+    const imageUrl = URL.createObjectURL(file);
+
+    // Navegar a la página de preview
+    navigate("/preview", {
+      state: {
+        image: imageUrl,
+        fileName: file.name,
+      },
+    });
   };
 
   // Aseguramos que filtersData sea un array
@@ -34,6 +57,15 @@ const Home = () => {
         <h2>Filtros fotográficos</h2>
         <FilterList filters={filters} />
       </main>
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        accept="image/*"
+        capture="environment"
+        className="hidden-input"
+        aria-hidden="true"
+      />
       <button
         onClick={handleUpload}
         className="upload-button"

@@ -123,6 +123,10 @@
   }
 }
 
+.hidden-input {
+  display: none;
+}
+
 // Responsive
 @media (max-width: 768px) {
   .filter-page__content {
