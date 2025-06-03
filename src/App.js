@@ -5,6 +5,7 @@ import Home from "./pages/index";
 import Login from "./pages/login";
 import Filter from "./pages/filter";
 import Preview from "./pages/preview";
+import "./styles/vars.scss";
 import "./App.css";
 
 const App = () => {

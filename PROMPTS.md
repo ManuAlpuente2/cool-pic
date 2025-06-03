@@ -1,4 +1,4 @@
-# PROMPT 1 (ChatGPT o4-mini)
+# PROMPT (ChatGPT o4-mini)
 
 Ayúdame a preparar los prompts para programar una aplicación con IA.
 
@@ -45,7 +45,7 @@ Aconséjame cómo hacerlo y ayúdame con la idea y los prompts. ¿Crees que ser�
 ¿Preparamos varios prompts para ir haciéndolo poco a poco o seguimos una estrategia one shot y luego vamos iterando? Tú eres la experta, dime
 
 
-# PROMTP 2 (Claude sonet-3.7)
+# PROMTP (Claude sonet-3.7)
 
 Eres un asistente experto en desarrollo web con React y Firebase. Quiero montar la primera iteración de mi aplicación de filtros de fotografía, que consiste en:
 
@@ -67,10 +67,33 @@ Eres un asistente experto en desarrollo web con React y Firebase. Quiero montar 
 Por favor, genera todos los archivos necesarios (React, componentes, configuración de Firebase) y asegúrate de que al ejecutar `npm run dev` se pueda navegar a `/login` y autenticar con Google o Apple. No es necesario incluir estilos complejos, puede usarse CSS mínimo. Sé lo más concreto posible con el código, incluyendo comentarios donde haga falta.
 
 
-# PROMTP 3 (Claude sonet-3.7)
+# PROMTP (Claude sonet-3.7)
 
 He creado un mock de la información que espero recibir en el futuro desde back para mi app de filtros fotográficos.
 
 Quiero que crees un componente <FilterList> que sea un grid de cards (<FilterItem>) en el que se mostrará el thumbnail, el nombre del filtro y badges cuando sean "isFeatured" o "isNew". 
 
 El componente <FilterList> debe mostrarse en la página index.jsx tanto si el usuario está logado como si no
+
+
+# PROMTP (Claude sonet-3.7)
+
+Muy bien por ahora! Ahora vamos a implementar la funcionalidad del botón "Subir foto".
+
+Cuando haga clic en él debe permitirme subir una foto desde la galería o desde la cámara.
+
+Cuando la foto se cargue me mostrará una nueva página "Preview".
+
+Esta página mostrará:
+
+El <Header/>
+La foto que he subido
+
+Si he pulsado en el botón de la home me mostrará:
+Título: Selecciona el filtro que quieres aplicar a tu foto
+Listado de filtros. (Por ahora no le pongas más funcionalidad)
+
+Si he pulsado desde la página de detalle de un filtro:
+Título: Vamos a aplicar el filtro ${nombre} a tu foto.
+Texto: Esto consumirá 1 token de tu saldo (tienes 3 tokens)
+Botón: "✨ Aplicar filtro"

@@ -1,15 +1,14 @@
 .filter-item {
   position: relative;
-  border-radius: 1rem;
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
-  background: var(--color-white);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: var(--color-background);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform var(--transition-fast);
+  aspect-ratio: 1;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
 
   &:focus {
@@ -17,14 +16,11 @@
     outline-offset: 2px;
   }
 
-  &:active {
-    transform: translateY(-2px);
-  }
-
   &__image-wrapper {
     position: relative;
     width: 100%;
     aspect-ratio: 1;
+    overflow: hidden;
   }
 
   &__image {
@@ -33,82 +29,56 @@
     object-fit: cover;
   }
 
+  &__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--spacing-lg);
+    background: var(--gradient-overlay);
+    color: var(--color-text);
+    min-height: 30%;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
   &__badges {
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
     display: flex;
-    gap: 0.5rem;
+    gap: var(--spacing-xs);
     z-index: 1;
   }
 
   &__badge {
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-xl);
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.2);
 
     &--featured {
-      background: var(--color-primary);
-      color: var(--color-white);
+      background: var(--gradient-primary);
+      color: var(--color-text);
       animation: pulse 2s infinite;
-      position: relative;
-      overflow: hidden;
-
-      &::before {
-        content: "★";
-        margin-right: 0.25rem;
-      }
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, transparent, rgba(0, 0, 0, 0.2));
-        pointer-events: none;
-      }
     }
 
     &--new {
-      background: var(--color-success);
-      color: var(--color-white);
+      background: var(--gradient-accent);
+      color: var(--color-text);
       animation: bounce 2s infinite;
-      position: relative;
-      overflow: hidden;
-
-      &::before {
-        content: "✨";
-        margin-right: 0.25rem;
-      }
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, transparent, rgba(0, 0, 0, 0.2));
-        pointer-events: none;
-      }
     }
-  }
-
-  &__title {
-    padding: 1rem;
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text);
-    text-align: start;
   }
 }
 
