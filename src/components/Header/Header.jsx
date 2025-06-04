@@ -28,7 +28,7 @@ const Header = ({ title = "Cool Pic" }) => {
       {isFilterPage ? (
         <button onClick={handleBack} className="header__back-button">
           <span className="header__back-icon">←</span>
-          <span>Volver</span>
+          <span>Back</span>
         </button>
       ) : (
         <h1 onClick={() => navigate("/")}>{title}</h1>

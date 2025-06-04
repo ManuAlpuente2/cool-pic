@@ -78,7 +78,7 @@ const Filter = () => {
         <div className="filter-page__preview">
           <img
             src={thumbnail}
-            alt={`Vista previa del filtro ${name}`}
+            alt={`Preview of filter ${name}`}
             className="filter-page__image"
           />
         </div>
@@ -87,16 +87,16 @@ const Filter = () => {
           <p className="filter-page__description">{description}</p>
           <div className="filter-page__placeholder">
             <p className="filter-page__placeholder-text">
-              Sube una foto para aplicar este filtro
+              Upload a photo to apply this filter
             </p>
           </div>
 
           <button
             className="apply-button"
             onClick={handleUpload}
-            aria-label={`Subir foto para aplicar el filtro ${name}`}
+            aria-label={`Upload photo to apply filter ${name}`}
           >
-            ✨ Subir foto
+            ✨ Upload photo
           </button>
         </div>
       </main>

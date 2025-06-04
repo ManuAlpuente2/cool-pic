@@ -55,19 +55,19 @@ const Home = () => {
       <Header />
       {!user && (
         <section className="hero">
-          <h1 className="hero__title">¡Dale vida a tus fotos!</h1>
+          <h1 className="hero__title">Bring your photos to life!</h1>
           <p className="hero__subtitle">
-            Haz login ahora y consigue 3 tokens gratis para aplicar filtros
-            increíbles a tus fotos
+            Log in now and get 3 free tokens to apply amazing filters to your
+            photos
           </p>
           <button onClick={() => navigate("/login")} className="hero__button">
             <span className="hero__button__icon">✨</span>
-            <span>Hacer login</span>
+            <span>Log in</span>
           </button>
         </section>
       )}
       <main className="main-content">
-        <h2>Filtros fotográficos</h2>
+        <h2>Photo Filters</h2>
         <FilterList filters={filters} />
       </main>
       <input
@@ -82,10 +82,10 @@ const Home = () => {
       <button
         onClick={handleUpload}
         className="upload-button"
-        aria-label="Subir nueva foto"
+        aria-label="Upload new photo"
       >
         <span className="upload-button__icon">✨</span>
-        <span className="upload-button__text">Subir foto</span>
+        <span className="upload-button__text">Upload photo</span>
       </button>
     </div>
   );

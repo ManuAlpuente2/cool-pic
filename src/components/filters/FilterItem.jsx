@@ -24,12 +24,12 @@ export const FilterItem = ({ filter }) => {
       <div className="filter-item__badges">
         {isFeatured && (
           <span className="filter-item__badge filter-item__badge--featured">
-            Destacado
+            Featured
           </span>
         )}
         {isNew && (
           <span className="filter-item__badge filter-item__badge--new">
-            Nuevo
+            New
           </span>
         )}
       </div>
