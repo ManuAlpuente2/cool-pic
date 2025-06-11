@@ -7,6 +7,7 @@ import Filter from "./pages/filter";
 import Preview from "./pages/preview";
 import "./styles/vars.scss";
 import "./App.css";
+import "./assets/icons/style.css";
 
 const App = () => {
   return (

@@ -38,15 +38,18 @@ const Header = ({ title = "Cool Pic" }) => {
         {user ? (
           <>
             <span>Welcome, {user.name || user.displayName}</span>
-            <button onClick={handleSignOut} className="button button-sign-out">
+            <span>You have {user.credits} tokens</span>
+            <button onClick={handleSignOut} className="button button-outline">
+              <i className="icon icon-sign-out"></i>
               Sign Out
             </button>
           </>
         ) : (
           <button
             onClick={() => navigate("/login")}
-            className="button button-sign-in"
+            className="button button-outline"
           >
+            <i className="icon icon-sign-in"></i>
             Sign in
           </button>
         )}

@@ -46,15 +46,15 @@ body {
 }
 
 /* Sign out button styles */
-.button-sign-out {
+.button-outline {
   background-color: transparent;
   border: 1px solid white;
   color: white;
   padding: 0.5rem 1rem;
-  min-width: auto;
+  min-width: 140px;
 }
 
-.button-sign-out:hover {
+.button-outline:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
