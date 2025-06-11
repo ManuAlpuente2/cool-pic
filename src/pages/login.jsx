@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import { signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider, appleProvider } from '../lib/firebase';
-import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider, appleProvider } from "../lib/firebase";
+import { useAuth } from "../contexts/AuthContext";
+import { BASE_URL } from "../constants";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,25 +10,45 @@ const Login = () => {
 
   // Redirect if already logged in
   if (user) {
-    navigate('/');
+    console.log({ user });
+    navigate("/");
     return null;
   }
 
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-      navigate('/');
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      // Llamada al endpoint de autenticación
+      const response = await fetch(`${BASE_URL}auth/oauth2/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: user.email,
+          name: user.displayName,
+          provider: "GOOGLE",
+          providerId: user.uid,
+        }),
+      });
+
+      const data = await response.json();
+      console.log("Auth response:", data);
+
+      navigate("/");
     } catch (error) {
-      console.error('Error signing in with Google:', error);
+      console.error("Error signing in with Google:", error);
     }
   };
 
   const handleAppleSignIn = async () => {
     try {
       await signInWithPopup(auth, appleProvider);
-      navigate('/');
+      navigate("/");
     } catch (error) {
-      console.error('Error signing in with Apple:', error);
+      console.error("Error signing in with Apple:", error);
     }
   };
 
@@ -46,4 +67,4 @@ const Login = () => {
   );
 };
 
-export default Login; 
+export default Login;

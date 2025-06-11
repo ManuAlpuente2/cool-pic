@@ -5,6 +5,9 @@ import { auth } from "../lib/firebase";
 import { FilterList } from "../components/filters/FilterList";
 import { Header } from "../components/Header/Header";
 import filtersData from "../mocks/filters.js";
+import startImg from "../mocks/img/start.png";
+import filterImg from "../mocks/img/filter.png";
+import resultImg from "../mocks/img/result.png";
 import "./index.scss";
 
 const Home = () => {
@@ -55,15 +58,47 @@ const Home = () => {
       <Header />
       {!user && (
         <section className="hero">
-          <h1 className="hero__title">Bring your photos to life!</h1>
-          <p className="hero__subtitle">
-            Log in now and get 3 free tokens to apply amazing filters to your
-            photos
-          </p>
-          <button onClick={() => navigate("/login")} className="hero__button">
-            <span className="hero__button__icon">✨</span>
-            <span>Log in</span>
-          </button>
+          <div className="hero__flow">
+            <div className="hero__flow__step">
+              <img
+                src={startImg}
+                alt="Upload your photo"
+                className="hero__flow__image"
+              />
+              <p className="hero__flow__text">Upload your pic</p>
+            </div>
+            <div className="hero__flow__operator">+</div>
+            <div className="hero__flow__step">
+              <img
+                src={filterImg}
+                alt="Select a filter"
+                className="hero__flow__image"
+              />
+              <p className="hero__flow__text">Select your filter</p>
+            </div>
+            <div className="hero__flow__operator">=</div>
+            <div className="hero__flow__step">
+              <img
+                src={resultImg}
+                alt="Get your result"
+                className="hero__flow__image"
+              />
+              <p className="hero__flow__text">Enjoy your pic</p>
+            </div>
+          </div>
+          <div className="hero__cta">
+            <p className="hero__cta__text">
+              Log in now and get 3 free tokens to apply amazing filters to your
+              photos
+            </p>
+            <button
+              onClick={() => navigate("/login")}
+              className="hero__cta__button"
+            >
+              <span className="hero__cta__button__icon">✨</span>
+              <span>Log in</span>
+            </button>
+          </div>
         </section>
       )}
       <main className="main-content">
