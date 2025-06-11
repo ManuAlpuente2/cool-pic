@@ -130,6 +130,24 @@
   display: none;
 }
 
+.filter-page__stats {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.filter-page__stat {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+  border-radius: var(--border-radius-xl);
+  font-size: 0.875rem;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 // Responsive
 @media (max-width: 768px) {
   .filter-page__content {

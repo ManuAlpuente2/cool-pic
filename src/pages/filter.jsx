@@ -1,37 +1,44 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useFilters } from "../contexts/FiltersContext";
 import { Header } from "../components/Header/Header";
 import FilterSkeleton from "../components/skeletons/FilterSkeleton";
+import { fetchStyles } from "../api/filters";
 import "./filter.scss";
 
 const Filter = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { filters } = useFilters();
   const fileInputRef = useRef(null);
+  const [filter, setFilter] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  console.log("Filter page - ID:", id);
-  console.log("Filter page - Filters:", filters);
+  useEffect(() => {
+    const loadFilter = async () => {
+      const result = await fetchStyles();
+      if (result.error) {
+        setError(result.error);
+      } else {
+        const foundFilter = result.find((f) => f.id === parseInt(id));
+        setFilter(foundFilter);
+      }
+      setIsLoading(false);
+    };
 
-  // Si no hay filtros aún, mostramos el skeleton
-  if (!filters) {
-    console.log("Filter page - No filters available yet");
+    loadFilter();
+  }, [id]);
+
+  // Si está cargando o hay error, mostramos el skeleton
+  if (isLoading || error) {
     return <FilterSkeleton />;
   }
-
-  // Encontrar el filtro por ID
-  const filter = filters.find((f) => f.id === parseInt(id));
-
-  console.log("Filter page - Found filter:", filter);
 
   // Si no hay filtro, mostramos el skeleton
   if (!filter) {
-    console.log("Filter page - No filter found with ID:", id);
     return <FilterSkeleton />;
   }
 
-  const { name, thumbnail, description } = filter;
+  const { name, thumbnail, description, popularity, sortOrder } = filter;
 
   const handleUpload = () => {
     fileInputRef.current?.click();
@@ -85,6 +92,14 @@ const Filter = () => {
 
         <div className="filter-page__info">
           <p className="filter-page__description">{description}</p>
+
+          <div className="filter-page__stats">
+            <span className="filter-page__stat">
+              Popularidad: {popularity || 0}
+            </span>
+            <span className="filter-page__stat">Orden: {sortOrder || 0}</span>
+          </div>
+
           <div className="filter-page__placeholder">
             <p className="filter-page__placeholder-text">
               Upload a photo to apply this filter

@@ -97,13 +97,13 @@ const Home = () => {
                 alt="Get your result"
                 className="hero__flow__image"
               />
-              <p className="hero__flow__text">Enjoy your pic</p>
+              <p className="hero__flow__text">Enjoy!</p>
             </div>
           </div>
           <div className="hero__cta">
             <p className="hero__cta__text">
-              Log in now and get 3 free tokens to apply amazing filters to your
-              photos
+              <strong>Enhance your photos</strong>: Log in now and get 3 free
+              tokens!
             </p>
             <button
               onClick={() => navigate("/login")}
@@ -116,7 +116,7 @@ const Home = () => {
         </section>
       )}
       <main className="main-content">
-        <h2>Photo Filters</h2>
+        {!user ? <h2>Available filters</h2> : <h2>Select your filter</h2>}
         {isLoading ? (
           <div className="filters-loading">Loading filters...</div>
         ) : error ? (

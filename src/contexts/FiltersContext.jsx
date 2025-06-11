@@ -6,21 +6,6 @@ const FiltersContext = createContext();
 export const FiltersProvider = ({ children }) => {
   const [filters, setFilters] = useState(null);
 
-  useEffect(() => {
-    // Simulamos una carga asíncrona de los filtros
-    const loadFilters = async () => {
-      try {
-        // Aquí podríamos cargar los filtros desde una API
-        setFilters(filtersData);
-      } catch (error) {
-        console.error("Error loading filters:", error);
-        setFilters([]);
-      }
-    };
-
-    loadFilters();
-  }, []);
-
   return (
     <FiltersContext.Provider value={{ filters }}>
       {children}
