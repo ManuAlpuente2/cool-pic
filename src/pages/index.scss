@@ -199,3 +199,15 @@
     }
   }
 }
+
+.filters-loading,
+.filters-error {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--color-text);
+  font-size: 1.1rem;
+}
+
+.filters-error {
+  color: var(--color-error);
+}

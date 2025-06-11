@@ -1,10 +1,10 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { auth } from "../lib/firebase";
 import { FilterList } from "../components/filters/FilterList";
 import { Header } from "../components/Header/Header";
-import filtersData from "../mocks/filters.js";
+import { fetchStyles } from "../api/filters";
 import startImg from "../mocks/img/start.png";
 import filterImg from "../mocks/img/filter.png";
 import resultImg from "../mocks/img/result.png";
@@ -14,6 +14,23 @@ const Home = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const fileInputRef = useRef(null);
+  const [filters, setFilters] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadFilters = async () => {
+      const result = await fetchStyles();
+      if (result.error) {
+        setError(result.error);
+      } else {
+        setFilters(result);
+      }
+      setIsLoading(false);
+    };
+
+    loadFilters();
+  }, []);
 
   const handleSignOut = async () => {
     try {
@@ -49,9 +66,6 @@ const Home = () => {
       },
     });
   };
-
-  // Aseguramos que filtersData sea un array
-  const filters = Array.isArray(filtersData) ? filtersData : [];
 
   return (
     <div className="home-container">
@@ -103,7 +117,13 @@ const Home = () => {
       )}
       <main className="main-content">
         <h2>Photo Filters</h2>
-        <FilterList filters={filters} />
+        {isLoading ? (
+          <div className="filters-loading">Loading filters...</div>
+        ) : error ? (
+          <div className="filters-error">{error}</div>
+        ) : (
+          <FilterList filters={filters} />
+        )}
       </main>
       <input
         type="file"

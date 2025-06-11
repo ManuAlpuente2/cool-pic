@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { Header } from "../components/Header/Header";
 import { FilterList } from "../components/filters/FilterList";
-import filtersData from "../mocks/filters.js";
+import { fetchStyles } from "../api/filters";
 import "./preview.scss";
 
 const Preview = () => {
@@ -9,6 +10,23 @@ const Preview = () => {
   const navigate = useNavigate();
   const { state } = location;
   const { image, filterId } = state || {};
+  const [filters, setFilters] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const loadFilters = async () => {
+      const result = await fetchStyles();
+      if (result.error) {
+        setError(result.error);
+      } else {
+        setFilters(result);
+      }
+      setIsLoading(false);
+    };
+
+    loadFilters();
+  }, []);
 
   // Si no hay imagen, redirigir a home
   if (!image) {
@@ -17,7 +35,7 @@ const Preview = () => {
   }
 
   const selectedFilter = filterId
-    ? filtersData.find((f) => f.id === parseInt(filterId))
+    ? filters.find((f) => f.id === parseInt(filterId))
     : null;
 
   return (
@@ -48,7 +66,13 @@ const Preview = () => {
         ) : (
           <div className="preview-page__filter-selection">
             <h2>Selecciona el filtro que quieres aplicar a tu foto</h2>
-            <FilterList filters={filtersData} />
+            {isLoading ? (
+              <div className="filters-loading">Loading filters...</div>
+            ) : error ? (
+              <div className="filters-error">{error}</div>
+            ) : (
+              <FilterList filters={filters} />
+            )}
           </div>
         )}
       </main>
