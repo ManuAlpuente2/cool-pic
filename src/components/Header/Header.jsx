@@ -37,7 +37,7 @@ const Header = ({ title = "Cool Pic" }) => {
       <div className="user-info">
         {user ? (
           <>
-            <span>Welcome, {user.displayName}</span>
+            <span>Welcome, {user.name || user.displayName}</span>
             <button onClick={handleSignOut} className="button button-sign-out">
               Sign Out
             </button>
