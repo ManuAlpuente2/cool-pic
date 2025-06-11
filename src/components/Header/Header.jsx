@@ -13,6 +13,7 @@ const Header = ({ title = "Cool Pic" }) => {
   const handleSignOut = async () => {
     try {
       await auth.signOut();
+      localStorage.removeItem("authData");
       navigate("/");
     } catch (error) {
       console.error("Error signing out:", error);

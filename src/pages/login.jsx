@@ -37,6 +37,18 @@ const Login = () => {
       const data = await response.json();
       console.log("Auth response:", data);
 
+      // Guardar la información de autenticación en localStorage
+      localStorage.setItem(
+        "authData",
+        JSON.stringify({
+          email: user.email,
+          name: user.displayName,
+          provider: "GOOGLE",
+          providerId: user.uid,
+          ...data, // Incluir cualquier información adicional del backend
+        })
+      );
+
       navigate("/");
     } catch (error) {
       console.error("Error signing in with Google:", error);
