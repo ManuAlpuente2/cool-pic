@@ -6,7 +6,7 @@ import { BASE_URL } from "../constants";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
 
   // Redirect if already logged in
   if (user) {
@@ -35,7 +35,6 @@ const Login = () => {
       });
 
       const data = await response.json();
-      console.log("Auth response:", data);
 
       // Guardar la información de autenticación en localStorage
       localStorage.setItem(
