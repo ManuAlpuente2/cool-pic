@@ -17,7 +17,7 @@ export const fetchStyles = async () => {
     id: style.id,
     name: style.name,
     description: style.description,
-    thumbnail: style.previewImageUrl,
+    thumbnail: style.previewImage,
     isActive: style.isActive,
     sortOrder: style.sortOrder,
     popularity: style.popularity,

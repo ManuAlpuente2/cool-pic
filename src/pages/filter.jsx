@@ -38,6 +38,8 @@ const Filter = () => {
     return <FilterSkeleton />;
   }
 
+  console.log(filter);
+
   const { name, thumbnail, description, popularity, sortOrder } = filter;
 
   const handleUpload = () => {
@@ -84,7 +86,7 @@ const Filter = () => {
         <h1 className="filter-page__title">{name}</h1>
         <div className="filter-page__preview">
           <img
-            src={thumbnail}
+            src={`data:image/jpeg;base64,${thumbnail}`}
             alt={`Preview of filter ${name}`}
             className="filter-page__image"
           />

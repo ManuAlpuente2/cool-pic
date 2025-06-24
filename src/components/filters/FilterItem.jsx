@@ -13,7 +13,7 @@ export const FilterItem = ({ filter }) => {
     <article className="filter-item" onClick={handleClick}>
       <div className="filter-item__image-wrapper">
         <img
-          src={thumbnail}
+          src={`data:image/png;base64,${thumbnail}`}
           alt={`Vista previa del filtro ${name}`}
           className="filter-item__image"
         />
