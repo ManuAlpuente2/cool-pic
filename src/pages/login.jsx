@@ -18,6 +18,7 @@ const Login = () => {
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
+      console.log("result", result);
       const user = result.user;
 
       // Llamada al endpoint de autenticación
@@ -31,8 +32,11 @@ const Login = () => {
           name: user.displayName,
           provider: "GOOGLE",
           providerId: user.uid,
+          profileImageUrl: user.photoURL,
         }),
       });
+
+      console.log("response", response);
 
       const data = await response.json();
 
@@ -44,6 +48,7 @@ const Login = () => {
           name: user.displayName,
           provider: "GOOGLE",
           providerId: user.uid,
+          photoURL: user.photoURL,
           ...data, // Incluir cualquier información adicional del backend
         })
       );

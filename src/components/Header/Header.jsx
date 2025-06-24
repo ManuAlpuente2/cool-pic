@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { auth } from "../../lib/firebase";
+import { Avatar } from "./Avatar";
 import "./Header.scss";
 
 const Header = ({ title = "Cool Pic" }) => {
@@ -36,14 +37,7 @@ const Header = ({ title = "Cool Pic" }) => {
       )}
       <div className="user-info">
         {user ? (
-          <>
-            <span>Welcome, {user.name || user.displayName}</span>
-            <span>You have {user.credits} tokens</span>
-            <button onClick={handleSignOut} className="button button-outline">
-              <i className="icon icon-sign-out"></i>
-              Sign Out
-            </button>
-          </>
+          <Avatar user={user} onSignOut={handleSignOut} />
         ) : (
           <button
             onClick={() => navigate("/login")}
