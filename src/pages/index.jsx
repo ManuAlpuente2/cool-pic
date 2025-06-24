@@ -63,6 +63,7 @@ const Home = () => {
       state: {
         image: imageUrl,
         fileName: file.name,
+        originalFile: file,
       },
     });
   };

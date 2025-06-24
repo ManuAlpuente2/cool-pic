@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import "./FilterItem.scss";
 
-export const FilterItem = ({ filter }) => {
+export const FilterItem = ({ filter, onSelect }) => {
   const navigate = useNavigate();
   const { id, name, thumbnail, isFeatured, isNew } = filter;
 
   const handleClick = () => {
-    navigate(`/filter/${id}`);
+    if (onSelect) {
+      onSelect(id);
+    } else {
+      navigate(`/filter/${id}`);
+    }
   };
 
   return (

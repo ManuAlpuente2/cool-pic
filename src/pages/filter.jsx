@@ -64,6 +64,7 @@ const Filter = () => {
       state: {
         image: imageUrl,
         fileName: file.name,
+        originalFile: file,
         filterId: id,
       },
     });

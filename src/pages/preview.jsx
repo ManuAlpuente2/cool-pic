@@ -3,16 +3,18 @@ import { useState, useEffect } from "react";
 import { Header } from "../components/Header/Header";
 import { FilterList } from "../components/filters/FilterList";
 import { fetchStyles } from "../api/filters";
+import { generateImage } from "../api/images";
 import "./preview.scss";
 
 const Preview = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { state } = location;
-  const { image, filterId } = state || {};
+  const { image, filterId, originalFile } = state || {};
   const [filters, setFilters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   useEffect(() => {
     const loadFilters = async () => {
@@ -38,6 +40,32 @@ const Preview = () => {
     ? filters.find((f) => f.id === parseInt(filterId))
     : null;
 
+  const handleApplyFilter = async () => {
+    if (!selectedFilter || !originalFile) {
+      console.error("Filtro o archivo no disponible");
+      return;
+    }
+
+    setIsGenerating(true);
+
+    const result = await generateImage({
+      styleId: selectedFilter.id,
+      originalImage: originalFile,
+    });
+
+    setIsGenerating(false);
+
+    if (result.error) {
+      console.log(result);
+      alert(`Error al aplicar el filtro: ${result.error}`);
+      return;
+    }
+
+    // TODO: Navegar a la página de resultado con la imagen generada
+    console.log("Imagen generada:", result);
+    alert("¡Filtro aplicado exitosamente!");
+  };
+
   return (
     <div className="preview-page">
       <Header />
@@ -58,9 +86,10 @@ const Preview = () => {
             </p>
             <button
               className="preview-page__apply-button"
-              onClick={() => console.log("Aplicar filtro")}
+              onClick={handleApplyFilter}
+              disabled={isGenerating}
             >
-              ✨ Aplicar filtro
+              {isGenerating ? "🔄 Aplicando..." : "✨ Aplicar filtro"}
             </button>
           </div>
         ) : (
@@ -71,7 +100,7 @@ const Preview = () => {
             ) : error ? (
               <div className="filters-error">{error}</div>
             ) : (
-              <FilterList filters={filters} />
+              <FilterList filters={filters} originalFile={originalFile} />
             )}
           </div>
         )}
