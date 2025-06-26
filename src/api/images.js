@@ -1,24 +1,6 @@
 import { BASE_URL } from "../constants";
 
 /**
- * Convierte un archivo a base64
- * @param {File} file - Archivo a convertir
- * @returns {Promise<string>} Archivo en formato base64
- */
-const fileToBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      // Extraer solo la parte base64 (sin el prefijo data:image/...;base64,)
-      const base64 = reader.result.split(",")[1];
-      resolve(base64);
-    };
-    reader.onerror = (error) => reject(error);
-  });
-};
-
-/**
  * Genera una imagen aplicando un filtro específico
  * @param {number} styleId - ID del filtro a aplicar
  * @param {File} originalImage - Archivo de imagen original
@@ -41,19 +23,18 @@ export const generateImage = async ({ styleId, originalImage }) => {
   }
 
   try {
-    // Convertir imagen a base64
-    const base64Image = await fileToBase64(originalImage);
+    // Crear FormData para enviar la imagen
+    const formData = new FormData();
+    formData.append("styleId", styleId.toString());
+    formData.append("originalImage", originalImage);
 
-    const response = await fetch(`${BASE_URL}images/generate`, {
+    const response = await fetch(`${BASE_URL}images/generate-with-image`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${authData.token}`,
-        "Content-Type": "application/json",
+        /* Authorization: `Bearer ${authData.token}`, */
+        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJkdWNoZTI3QGdtYWlsLmNvbSIsInJvbGUiOiJTVVBFUl9BRE1JTiIsImlhdCI6MTc1MDc4MDY2MiwiZXhwIjoxNzUxNjQ0NjYyfQ.2gKFC_DglgSnbQZnuEzt1enw9kw9x1Uk_K6LHg5C4nvCdz23-h-Or5i0rQsRA_g8zJjdZIPPrFL-BSoyzvh6Jw`,
       },
-      body: JSON.stringify({
-        styleId: styleId.toString(),
-        originalImage: base64Image,
-      }),
+      body: formData,
     });
 
     if (!response.ok) {

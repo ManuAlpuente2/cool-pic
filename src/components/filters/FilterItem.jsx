@@ -3,7 +3,7 @@ import "./FilterItem.scss";
 
 export const FilterItem = ({ filter, onSelect }) => {
   const navigate = useNavigate();
-  const { id, name, thumbnail, isFeatured, isNew } = filter;
+  const { id, name, thumbnail, isFeatured, isNew, popularity } = filter;
 
   const handleClick = () => {
     if (onSelect) {
@@ -26,7 +26,7 @@ export const FilterItem = ({ filter, onSelect }) => {
         </div>
       </div>
       <div className="filter-item__badges">
-        {isFeatured && (
+        {popularity >= 1 && (
           <span className="filter-item__badge filter-item__badge--featured">
             Featured
           </span>

@@ -96,12 +96,12 @@ const Filter = () => {
         <div className="filter-page__info">
           <p className="filter-page__description">{description}</p>
 
-          <div className="filter-page__stats">
+          {/* <div className="filter-page__stats">
             <span className="filter-page__stat">
               Popularidad: {popularity || 0}
             </span>
             <span className="filter-page__stat">Orden: {sortOrder || 0}</span>
-          </div>
+          </div> */}
 
           <div className="filter-page__placeholder">
             <p className="filter-page__placeholder-text">

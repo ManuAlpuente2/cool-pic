@@ -15,6 +15,7 @@ const Preview = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [generatedImage, setGeneratedImage] = useState(null);
 
   useEffect(() => {
     const loadFilters = async () => {
@@ -61,9 +62,10 @@ const Preview = () => {
       return;
     }
 
-    // TODO: Navegar a la página de resultado con la imagen generada
-    console.log("Imagen generada:", result);
-    alert("¡Filtro aplicado exitosamente!");
+    console.log("Imagen generada:", result.generation.generatedImage);
+    setGeneratedImage(
+      `data:image/png;base64,${result.generation.generatedImage}`
+    );
   };
 
   return (
@@ -72,7 +74,7 @@ const Preview = () => {
       <main className="preview-page__content">
         <div className="preview-page__image-container">
           <img
-            src={image}
+            src={generatedImage || image}
             alt="Vista previa de la foto"
             className="preview-page__image"
           />
@@ -80,17 +82,25 @@ const Preview = () => {
 
         {selectedFilter ? (
           <div className="preview-page__filter-info">
-            <h2>Vamos a aplicar el filtro {selectedFilter.name} a tu foto</h2>
-            <p className="preview-page__tokens">
-              Esto consumirá 1 token de tu saldo (tienes 3 tokens)
-            </p>
-            <button
-              className="preview-page__apply-button"
-              onClick={handleApplyFilter}
-              disabled={isGenerating}
-            >
-              {isGenerating ? "🔄 Aplicando..." : "✨ Aplicar filtro"}
-            </button>
+            {generatedImage ? (
+              <h2>¡WOW! Ha quedado genial</h2>
+            ) : (
+              <>
+                <h2>
+                  Vamos a aplicar el filtro {selectedFilter.name} a tu foto
+                </h2>
+                <p className="preview-page__tokens">
+                  Esto consumirá 1 token de tu saldo (tienes 3 tokens)
+                </p>
+                <button
+                  className="preview-page__apply-button"
+                  onClick={handleApplyFilter}
+                  disabled={isGenerating}
+                >
+                  {isGenerating ? "🔄 Aplicando..." : "✨ Aplicar filtro"}
+                </button>
+              </>
+            )}
           </div>
         ) : (
           <div className="preview-page__filter-selection">
