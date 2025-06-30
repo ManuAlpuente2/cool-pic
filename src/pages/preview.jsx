@@ -69,7 +69,7 @@ const Preview = () => {
   };
 
   return (
-    <div className="preview-page">
+    <div className="page-container preview-page">
       <Header />
       <main className="preview-page__content">
         <div className="preview-page__image-container">

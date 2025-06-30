@@ -69,7 +69,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="page-container login-container">
       <h1>Welcome to Cool Pic</h1>
       <div className="login-buttons">
         <button onClick={handleGoogleSignIn} className="login-button google">

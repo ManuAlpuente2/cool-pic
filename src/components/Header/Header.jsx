@@ -4,7 +4,7 @@ import { auth } from "../../lib/firebase";
 import { Avatar } from "./Avatar";
 import "./Header.scss";
 
-const Header = ({ title = "Cool Pic" }) => {
+const Header = ({ title = "CoolPic" }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();

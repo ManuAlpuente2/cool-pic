@@ -10,10 +10,10 @@
   h1 {
     margin: 0;
     font-size: 1.5rem;
-    color: var(--color-text);
+    color: white;
     cursor: pointer;
     transition: color var(--transition-fast);
-
+    font-weight: 700;
     &:hover {
       color: var(--color-primary);
     }

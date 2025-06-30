@@ -69,7 +69,7 @@ const Home = () => {
   };
 
   return (
-    <div className="home-container">
+    <div className="page-container home-container">
       <Header />
       {!user && (
         <section className="hero">

@@ -110,16 +110,22 @@ body {
   min-height: 100vh;
 }
 
+.page-container {
+  padding-top: 4.375rem;
+}
+
 .header {
-  background-color: black;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
 }
 
 .user-info {

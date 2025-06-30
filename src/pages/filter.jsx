@@ -71,7 +71,7 @@ const Filter = () => {
   };
 
   return (
-    <div className="filter-page">
+    <div className="page-container filter-page">
       <Header />
       <input
         type="file"
