@@ -21,5 +21,7 @@ export const fetchStyles = async () => {
     isActive: style.isActive,
     sortOrder: style.sortOrder,
     popularity: style.popularity,
+    popular: style.popular,
+    new: style.new,
   }));
 };
