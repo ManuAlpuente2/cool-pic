@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { auth } from "../lib/firebase";
 import { FilterList } from "../components/filters/FilterList";
+import { FilterSlider } from "../components/filters/FilterSlider";
 import { Header } from "../components/Header/Header";
 import { fetchStyles } from "../api/filters";
 import startImg from "../mocks/img/start.png";
@@ -72,6 +73,19 @@ const Home = () => {
     <div className="page-container home-container">
       <Header />
       {!user && (
+        <div className="tutorial">
+          <h2>Turn your selfie into a WOW! image</h2>
+          <p>Try now free and get 3 tokens</p>
+          <button
+            onClick={() => navigate("/login")}
+            className="button liquid-button"
+          >
+            <i className="icon icon-sign-in"></i>
+            <span>LOG IN</span>
+          </button>
+        </div>
+      )}
+      {/* {!user && (
         <section className="hero">
           <div className="hero__flow">
             <div className="hero__flow__step">
@@ -115,15 +129,28 @@ const Home = () => {
             </button>
           </div>
         </section>
-      )}
+      )} */}
       <main className="main-content">
-        {!user ? <h2>Available filters</h2> : <h2>Select your filter</h2>}
         {isLoading ? (
-          <div className="filters-loading">Loading filters...</div>
+          <>
+            <div className="filters-loading">Loading filters...</div>
+          </>
         ) : error ? (
           <div className="filters-error">{error}</div>
         ) : (
-          <FilterList filters={filters} />
+          <>
+            {!user ? (
+              <>
+                <h2>Choose from over {filters.length} styles</h2>
+                <FilterSlider filters={filters} />
+              </>
+            ) : (
+              <>
+                <h2>Select your filter</h2>
+                <FilterList filters={filters} />
+              </>
+            )}
+          </>
         )}
       </main>
       <input
@@ -137,11 +164,11 @@ const Home = () => {
       />
       <button
         onClick={handleUpload}
-        className="upload-button"
+        className="liquid-button upload-button"
         aria-label="Upload new photo"
       >
-        <span className="upload-button__icon">✨</span>
-        <span className="upload-button__text">Upload photo</span>
+        <i className="icon icon-camera"></i>
+        <span className="upload-button__text">UPLOAD PHOTO</span>
       </button>
     </div>
   );

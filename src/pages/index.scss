@@ -39,6 +39,30 @@
     text-align: center;
     font-weight: 700;
   }
+  .home-container & {
+    padding: var(--spacing-xl) 0;
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.tutorial {
+  text-wrap: balance;
+  text-align: center;
+  color: white;
+  padding: var(--spacing-xl) var(--spacing-md);
+  h2 {
+    font-size: 2.4rem;
+  }
+  p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-lg);
+  }
+  .button {
+    justify-self: center;
+  }
 }
 
 .button {
@@ -68,40 +92,8 @@
   position: fixed;
   bottom: var(--spacing-xl);
   right: var(--spacing-xl);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
   padding: var(--spacing-md) var(--spacing-lg);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  color: var(--color-text);
-  border-radius: var(--border-radius-xl);
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all var(--transition-fast);
   z-index: 100;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-
-  &:hover {
-    //transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
-
-  &:active {
-    transform: translateY(0);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  &__icon {
-    font-size: 1.25rem;
-  }
 
   &__text {
     @media (max-width: 480px) {

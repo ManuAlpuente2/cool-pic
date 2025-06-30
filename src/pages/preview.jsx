@@ -70,6 +70,15 @@ const Preview = () => {
 
   return (
     <div className="page-container preview-page">
+      {isGenerating ? (
+        <span className="loading">
+          <div class="circles">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="circle3"></div>
+          </div>
+        </span>
+      ) : null}
       <Header />
       <main className="preview-page__content">
         <div className="preview-page__image-container">
@@ -78,33 +87,48 @@ const Preview = () => {
             alt="Vista previa de la foto"
             className="preview-page__image"
           />
+          {/* Mostrar una imagen en miniatura del filtro que se va a aplicar */}
+          {selectedFilter?.thumbnail && !generatedImage ? (
+            <img
+              src={`data:image/jpeg;base64,${selectedFilter.thumbnail}`}
+              alt={selectedFilter.name}
+              className="preview-page__filter-thumbnail"
+            />
+          ) : null}
         </div>
 
         {selectedFilter ? (
           <div className="preview-page__filter-info">
             {generatedImage ? (
-              <h2>¡WOW! Ha quedado genial</h2>
+              <h2>WOW! It turned out great!</h2>
             ) : (
               <>
                 <h2>
-                  Vamos a aplicar el filtro {selectedFilter.name} a tu foto
+                  Let's apply the {selectedFilter.name} filter to your photo
                 </h2>
                 <p className="preview-page__tokens">
-                  Esto consumirá 1 token de tu saldo (tienes 3 tokens)
+                  This will consume 1 token from your balance (you have 3
+                  tokens)
                 </p>
                 <button
-                  className="preview-page__apply-button"
+                  className="button liquid-button"
                   onClick={handleApplyFilter}
                   disabled={isGenerating}
                 >
-                  {isGenerating ? "🔄 Aplicando..." : "✨ Aplicar filtro"}
+                  {isGenerating ? (
+                    <>LOADING</>
+                  ) : (
+                    <>
+                      <i className="icon icon-magic"></i> APPLY FILTER
+                    </>
+                  )}
                 </button>
               </>
             )}
           </div>
         ) : (
           <div className="preview-page__filter-selection">
-            <h2>Selecciona el filtro que quieres aplicar a tu foto</h2>
+            <h2>Select the filter you want to apply to your photo</h2>
             {isLoading ? (
               <div className="filters-loading">Loading filters...</div>
             ) : error ? (

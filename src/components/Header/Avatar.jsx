@@ -46,7 +46,7 @@ const Avatar = ({ user, onSignOut }) => {
         </div>
         <button onClick={onSignOut} className="avatar__signout">
           <i className="icon icon-sign-out"></i>
-          Sign Out
+          SIGN OUT
         </button>
       </div>
     </div>

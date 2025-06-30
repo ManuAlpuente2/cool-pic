@@ -29,8 +29,7 @@ const Header = ({ title = "CoolPic" }) => {
     <header className="header">
       {isFilterPage ? (
         <button onClick={handleBack} className="header__back-button">
-          <span className="header__back-icon">←</span>
-          <span>Back</span>
+          <span>BACK</span>
         </button>
       ) : (
         <h1 onClick={() => navigate("/")}>{title}</h1>
@@ -44,7 +43,7 @@ const Header = ({ title = "CoolPic" }) => {
             className="button button-outline"
           >
             <i className="icon icon-sign-in"></i>
-            Sign in
+            LOG IN
           </button>
         )}
       </div>

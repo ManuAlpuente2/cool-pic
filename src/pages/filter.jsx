@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Header } from "../components/Header/Header";
 import FilterSkeleton from "../components/skeletons/FilterSkeleton";
 import { fetchStyles } from "../api/filters";
+import { useAuth } from "../contexts/AuthContext";
 import "./filter.scss";
 
 const Filter = () => {
@@ -12,6 +13,7 @@ const Filter = () => {
   const [filter, setFilter] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { user } = useAuth();
 
   useEffect(() => {
     const loadFilter = async () => {
@@ -103,19 +105,41 @@ const Filter = () => {
             <span className="filter-page__stat">Orden: {sortOrder || 0}</span>
           </div> */}
 
-          <div className="filter-page__placeholder">
-            <p className="filter-page__placeholder-text">
-              Upload a photo to apply this filter
-            </p>
-          </div>
+          {user ? (
+            <>
+              <div className="filter-page__placeholder">
+                <p className="filter-page__placeholder-text">
+                  Upload a photo to apply this filter
+                </p>
+              </div>
 
-          <button
-            className="apply-button"
-            onClick={handleUpload}
-            aria-label={`Upload photo to apply filter ${name}`}
-          >
-            ✨ Upload photo
-          </button>
+              <button
+                className="button liquid-button"
+                onClick={handleUpload}
+                aria-label={`Upload photo to apply filter ${name}`}
+              >
+                <i className="icon icon-camera"></i>
+                UPLOAD PHOTO
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="filter-page__placeholder">
+                <p className="filter-page__placeholder-text">
+                  Log in to apply this filter to your pic
+                </p>
+              </div>
+
+              <button
+                className="button liquid-button"
+                onClick={() => navigate("/login")}
+                aria-label={`Upload photo to apply filter ${name}`}
+              >
+                <i className="icon icon-sign-in"></i>
+                LOG IN
+              </button>
+            </>
+          )}
         </div>
       </main>
     </div>

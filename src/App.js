@@ -6,7 +6,7 @@ import Login from "./pages/login";
 import Filter from "./pages/filter";
 import Preview from "./pages/preview";
 import "./styles/vars.scss";
-import "./App.css";
+import "./App.scss";
 import "./assets/icons/style.css";
 
 const App = () => {
