@@ -3,7 +3,7 @@ import "./FilterItem.scss";
 
 export const FilterItem = ({ filter, onSelect }) => {
   const navigate = useNavigate();
-  const { id, name, thumbnail, isFeatured, isNew, popular } = filter;
+  const { id, name, thumbnail, isNew, popular } = filter;
 
   console.log({ filter });
 
