@@ -165,7 +165,6 @@ const Home = () => {
             ref={fileInputRef}
             onChange={handleFileChange}
             accept="image/*"
-            capture="user"
             className="hidden-input"
             aria-hidden="true"
           />
