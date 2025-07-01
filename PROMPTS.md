@@ -1,4 +1,6 @@
-# PROMPT (ChatGPT o4-mini)
+# PROMPTS
+
+## PROMPT (ChatGPT o4-mini)
 
 Ayúdame a preparar los prompts para programar una aplicación con IA.
 
@@ -45,7 +47,7 @@ Aconséjame cómo hacerlo y ayúdame con la idea y los prompts. ¿Crees que ser�
 ¿Preparamos varios prompts para ir haciéndolo poco a poco o seguimos una estrategia one shot y luego vamos iterando? Tú eres la experta, dime
 
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Eres un asistente experto en desarrollo web con React y Firebase. Quiero montar la primera iteración de mi aplicación de filtros de fotografía, que consiste en:
 
@@ -67,7 +69,7 @@ Eres un asistente experto en desarrollo web con React y Firebase. Quiero montar 
 Por favor, genera todos los archivos necesarios (React, componentes, configuración de Firebase) y asegúrate de que al ejecutar `npm run dev` se pueda navegar a `/login` y autenticar con Google o Apple. No es necesario incluir estilos complejos, puede usarse CSS mínimo. Sé lo más concreto posible con el código, incluyendo comentarios donde haga falta.
 
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 He creado un mock de la información que espero recibir en el futuro desde back para mi app de filtros fotográficos.
 
@@ -76,7 +78,7 @@ Quiero que crees un componente <FilterList> que sea un grid de cards (<FilterIte
 El componente <FilterList> debe mostrarse en la página index.jsx tanto si el usuario está logado como si no
 
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Muy bien por ahora! Ahora vamos a implementar la funcionalidad del botón "Subir foto".
 
@@ -98,7 +100,7 @@ Título: Vamos a aplicar el filtro ${nombre} a tu foto.
 Texto: Esto consumirá 1 token de tu saldo (tienes 3 tokens)
 Botón: "✨ Aplicar filtro"
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Ahora vamos a mejorar un poco los estilos de la app. Quiero un estilo moderno, minimalista y tecnológico.
 
@@ -108,7 +110,7 @@ En las cards quiero que el nombre del filtro esté encima de la imagen con un de
 Usa colores brillantes para los badges y botones
 No uses sombras
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Vamos a implementar una nueva funcionalidad. Repasa bien todos los archivos y modifica lo que sea necesario para hacer una estructura correcta.
 
@@ -121,15 +123,15 @@ Cuando un usuario haga login haz una llamada POST a ${BASE_URL}/auth/oauth2/logi
      "providerId": user.uuid
 }
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Ahora crea un nuevo UserContext y guarda en él la información del usuario que se reciba en la llamada a  ${BASE_URL}/auth/oauth2/login.
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Quiero que implementes una nueva funcionalidad. La información que recibas de ${BASE_URL}/auth/oauth2/login debe ser persistente. Guárdala en el almacenamiento local
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Vamos a comenzar a usar información real.
 
@@ -143,22 +145,22 @@ Modifica la constante `filters` por información real. Para ello haz una llamada
 "isActive": true,
 "popularity": 0, }
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Haz que en la página de detalle de un filtro también se muestre la información real obtenida desde la api. Implementa la funcionalidad de la forma que creas más conveniente
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Al pulsar en el botón "Aplicar filtro" se debe hacer una llamada al endpoint `images/generate` de la api con los siguientes parámetros multipart/form-data
 
 styleId: el id del filter seleccionado
 originalImage: la imagen seleccionada (image)
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Aplica un estilo liquid glass (similar al de Apple) a `.upload-button` y a `.filter-item__badge`
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Okey, ahora vas a crear la página "mi perfil" de un usuario logueado.
 
@@ -166,13 +168,13 @@ Esta página mostrará sus datos de inicio de sesión y debajo un grid con sus i
 
 Estas imágenes se obtienen haciendo una consulta a {{base_url}}/images/my-generations?page=0&size=10
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Transforma el listado de estilos (.filter-list) de la home en un slider sólo cuando el usuario no esté logueado.
 
 Usa Swiper.js y haz un slider tipo carrusel
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 Crea una página de "Galeria" para usuarios logados. Se accederá haciendo click en el avatar del header.
 
@@ -180,7 +182,7 @@ En la página se mostrará un grid con todas la imágenes generadas por ese usua
 
 Las imágenes se obtienen en el endpoint `/images/my-generations`
 
-# PROMTP (Claude sonet-3.7)
+## PROMTP (Claude sonet-3.7)
 
 al pulsar en `.upload-button` quiero que se muestre un modal ofreciendo la posibilidad de seleccionar "Galeria" o "Cámara" y que modifique las opciones del input de subida de imágenes para que el usuario de móvil pueda subir imágenes desde la galeria o desde la cámara
 
