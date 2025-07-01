@@ -30,17 +30,23 @@ const Filter = () => {
     loadFilter();
   }, [id]);
 
-  // Si está cargando o hay error, mostramos el skeleton
-  if (isLoading || error) {
-    return <FilterSkeleton />;
-  }
-
-  // Si no hay filtro, mostramos el skeleton
-  if (!filter) {
-    return <FilterSkeleton />;
-  }
-
   console.log(filter);
+
+  if (!filter) {
+    return (
+      <>
+        <div className="page-container filter-page">
+          <Header />
+          <main className="filter-page__content">
+            <h1 class="filter-page__title skeleton"></h1>
+            <div class="filter-page__preview">
+              <div class="filter-page__preview-image skeleton"></div>
+            </div>
+          </main>
+        </div>
+      </>
+    );
+  }
 
   const { name, thumbnail, description, popularity, sortOrder } = filter;
 
@@ -74,7 +80,8 @@ const Filter = () => {
 
   return (
     <div className="page-container filter-page">
-      <Header />
+      <Header loading={!filter} />
+
       <input
         type="file"
         ref={fileInputRef}
@@ -86,61 +93,56 @@ const Filter = () => {
       />
 
       <main className="filter-page__content">
-        <h1 className="filter-page__title">{name}</h1>
-        <div className="filter-page__preview">
-          <img
-            src={`data:image/jpeg;base64,${thumbnail}`}
-            alt={`Preview of filter ${name}`}
-            className="filter-page__image"
-          />
-        </div>
+        {filter ? (
+          <>
+            <h1 className="filter-page__title">{name}</h1>
+            <div className="filter-page__preview">
+              <img
+                src={`data:image/jpeg;base64,${thumbnail}`}
+                alt={`Preview of filter ${name}`}
+                className="filter-page__image"
+              />
+            </div>
+            <div className="filter-page__info">
+              <p className="filter-page__description">{description}</p>
+              {user ? (
+                <>
+                  <div className="filter-page__placeholder">
+                    <p className="filter-page__placeholder-text">
+                      Upload a photo to apply this filter
+                    </p>
+                  </div>
 
-        <div className="filter-page__info">
-          <p className="filter-page__description">{description}</p>
+                  <button
+                    className="button liquid-button"
+                    onClick={handleUpload}
+                    aria-label={`Upload photo to apply filter ${name}`}
+                  >
+                    <i className="icon icon-camera"></i>
+                    UPLOAD PHOTO
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="filter-page__placeholder">
+                    <p className="filter-page__placeholder-text">
+                      Log in to apply this filter to your pic
+                    </p>
+                  </div>
 
-          {/* <div className="filter-page__stats">
-            <span className="filter-page__stat">
-              Popularidad: {popularity || 0}
-            </span>
-            <span className="filter-page__stat">Orden: {sortOrder || 0}</span>
-          </div> */}
-
-          {user ? (
-            <>
-              <div className="filter-page__placeholder">
-                <p className="filter-page__placeholder-text">
-                  Upload a photo to apply this filter
-                </p>
-              </div>
-
-              <button
-                className="button liquid-button"
-                onClick={handleUpload}
-                aria-label={`Upload photo to apply filter ${name}`}
-              >
-                <i className="icon icon-camera"></i>
-                UPLOAD PHOTO
-              </button>
-            </>
-          ) : (
-            <>
-              <div className="filter-page__placeholder">
-                <p className="filter-page__placeholder-text">
-                  Log in to apply this filter to your pic
-                </p>
-              </div>
-
-              <button
-                className="button liquid-button"
-                onClick={() => navigate("/login")}
-                aria-label={`Upload photo to apply filter ${name}`}
-              >
-                <i className="icon icon-sign-in"></i>
-                LOG IN
-              </button>
-            </>
-          )}
-        </div>
+                  <button
+                    className="button liquid-button"
+                    onClick={() => navigate("/login")}
+                    aria-label={`Upload photo to apply filter ${name}`}
+                  >
+                    <i className="icon icon-sign-in"></i>
+                    LOG IN
+                  </button>
+                </>
+              )}
+            </div>
+          </>
+        ) : null}
       </main>
     </div>
   );

@@ -48,18 +48,12 @@ const Gallery = () => {
 
   return (
     <div className="gallery-page page-container">
-      <Header loading={isLoading} />
+      <Header />
 
       <main className="gallery-content">
         <div className="gallery-header">
           <h2>Gallery</h2>
         </div>
-
-        {isLoading && (
-          <div className="gallery-loading">
-            <p>Loading your images...</p>
-          </div>
-        )}
 
         {error && (
           <div className="gallery-error">
@@ -87,7 +81,7 @@ const Gallery = () => {
           </div>
         )}
 
-        {!isLoading && !error && images.length > 0 && (
+        {!isLoading && !error && images.length > 0 ? (
           <div className="gallery-grid">
             {images.map((image) => (
               <div
@@ -114,7 +108,25 @@ const Gallery = () => {
               </div>
             ))}
           </div>
-        )}
+        ) : isLoading ? (
+          <div className="gallery-grid">
+            <div className="gallery-item">
+              <div className="gallery-item__image skeleton"></div>
+            </div>
+            <div className="gallery-item">
+              <div className="gallery-item__image skeleton"></div>
+            </div>
+            <div className="gallery-item">
+              <div className="gallery-item__image skeleton"></div>
+            </div>
+            <div className="gallery-item">
+              <div className="gallery-item__image skeleton"></div>
+            </div>
+            <div className="gallery-item">
+              <div className="gallery-item__image skeleton"></div>
+            </div>
+          </div>
+        ) : null}
       </main>
     </div>
   );

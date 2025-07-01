@@ -10,6 +10,7 @@ import startImg from "../mocks/img/start.png";
 import filterImg from "../mocks/img/filter.png";
 import resultImg from "../mocks/img/result.png";
 import "./index.scss";
+import FilterSkeleton from "../components/skeletons/FilterSkeleton";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -75,20 +76,7 @@ const Home = () => {
         user ? "home-container" : "welcome-container"
       }`}
     >
-      <Header loading={isLoading} />
-      {!user && (
-        <div className="tutorial">
-          <h2>Turn your selfie into a WOW! image</h2>
-          <p>Try now free and get 3 tokens</p>
-          <button
-            onClick={() => navigate("/login")}
-            className="button liquid-button"
-          >
-            <i className="icon icon-sign-in"></i>
-            <span>LOG IN</span>
-          </button>
-        </div>
-      )}
+      <Header loading={isLoading && !user} />
       {/* {!user && (
         <section className="hero">
           <div className="hero__flow">
@@ -135,30 +123,40 @@ const Home = () => {
         </section>
       )} */}
       <main className="main-content">
-        {isLoading ? (
+        {!user && (
+          <div className="tutorial">
+            <h2>Turn your selfie into a WOW! image</h2>
+            <p>Try now free and get 3 tokens</p>
+            <button
+              onClick={() => navigate("/login")}
+              className="button liquid-button"
+            >
+              <i className="icon icon-sign-in"></i>
+              <span>LOG IN</span>
+            </button>
+          </div>
+        )}
+        {!user && !isLoading ? (
           <>
-            <div className="filters-loading">Loading filters...</div>
+            <h2>Choose from over {filters.length} styles</h2>
+            <FilterSlider filters={filters} />
           </>
-        ) : error ? (
-          <div className="filters-error">{error}</div>
         ) : (
           <>
-            {!user ? (
-              <>
-                <h2>Choose from over {filters.length} styles</h2>
-                <FilterSlider filters={filters} />
-              </>
-            ) : (
-              <>
-                <h2>
-                  <a onClick={handleUpload}>Upload your photo</a> and choose the
-                  filter that will <span>make it cool</span>
-                </h2>
-                <FilterList filters={filters} />
-              </>
-            )}
+            {user ? (
+              <h2>
+                <a onClick={handleUpload}>Upload your photo</a> and choose the
+                filter that will <span>make it cool</span>
+              </h2>
+            ) : null}
+            {!isLoading && user ? (
+              <FilterList filters={filters} />
+            ) : user ? (
+              <FilterSkeleton />
+            ) : null}
           </>
         )}
+        {error ? <div className="filters-error">{error}</div> : null}
       </main>
       {user && (
         <>
