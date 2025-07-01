@@ -75,9 +75,9 @@ const Login = () => {
         <button onClick={handleGoogleSignIn} className="login-button google">
           Continue with Google
         </button>
-        <button onClick={handleAppleSignIn} className="login-button apple">
+        {/* <button onClick={handleAppleSignIn} className="login-button apple">
           Continue with Apple
-        </button>
+        </button> */}
       </div>
     </div>
   );

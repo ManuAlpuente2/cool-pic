@@ -36,7 +36,7 @@
 .filter-page__title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: #9a9a9a;
   margin-bottom: var(--spacing-xl);
   text-align: center;
 }
@@ -66,13 +66,9 @@
   text-align: center;
 }
 
-.filter-page__placeholder {
-  margin-bottom: var(--spacing-xl);
-}
-
 .filter-page__placeholder-text {
   font-size: 1.25rem;
-  color: var(--color-text-light);
+  color: white;
   margin-bottom: var(--spacing-md);
 }
 
