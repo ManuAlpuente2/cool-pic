@@ -172,8 +172,10 @@ const Home = () => {
           <>
             {user ? (
               <h2>
-                <a onClick={handleUpload}>Upload your photo</a> and choose the
-                filter that will <span>make it cool</span>
+                <a onClick={isMobile ? handleUpload : handleSelectGallery}>
+                  Upload your photo
+                </a>{" "}
+                and choose the filter that will <span>make it cool</span>
               </h2>
             ) : null}
             {!isLoading && user ? (
