@@ -97,3 +97,93 @@ Si he pulsado desde la página de detalle de un filtro:
 Título: Vamos a aplicar el filtro ${nombre} a tu foto.
 Texto: Esto consumirá 1 token de tu saldo (tienes 3 tokens)
 Botón: "✨ Aplicar filtro"
+
+# PROMTP (Claude sonet-3.7)
+
+Ahora vamos a mejorar un poco los estilos de la app. Quiero un estilo moderno, minimalista y tecnológico.
+
+Quiero que uses la tipografia Inter desde Google Fonts.
+Aplica fondo negro.
+En las cards quiero que el nombre del filtro esté encima de la imagen con un degradado para que pueda leerse.
+Usa colores brillantes para los badges y botones
+No uses sombras
+
+# PROMTP (Claude sonet-3.7)
+
+Vamos a implementar una nueva funcionalidad. Repasa bien todos los archivos y modifica lo que sea necesario para hacer una estructura correcta.
+
+Cuando un usuario haga login haz una llamada POST a ${BASE_URL}/auth/oauth2/login con el siguiente body y haz un console.log con la respuesta.
+
+{
+    "email": user.email,
+     "name": user.displayName,
+     "provider": "GOOGLE",
+     "providerId": user.uuid
+}
+
+# PROMTP (Claude sonet-3.7)
+
+Ahora crea un nuevo UserContext y guarda en él la información del usuario que se reciba en la llamada a  ${BASE_URL}/auth/oauth2/login.
+
+# PROMTP (Claude sonet-3.7)
+
+Quiero que implementes una nueva funcionalidad. La información que recibas de ${BASE_URL}/auth/oauth2/login debe ser persistente. Guárdala en el almacenamiento local
+
+# PROMTP (Claude sonet-3.7)
+
+Vamos a comenzar a usar información real.
+
+Modifica la constante `filters` por información real. Para ello haz una llamada GET a  ${BASE_URL}/styles, la información que te interesa de la respuesta es la siguiente
+
+{ "id": 1,
+"name": "Artistic Oil Painting",
+"description": "Transform your photo into a beautiful oil painting with rich textures and vibrant colors",
+"previewImageUrl": "/images/styles/oil-painting.jpg",
+"sortOrder": 1,
+"isActive": true,
+"popularity": 0, }
+
+# PROMTP (Claude sonet-3.7)
+
+Haz que en la página de detalle de un filtro también se muestre la información real obtenida desde la api. Implementa la funcionalidad de la forma que creas más conveniente
+
+# PROMTP (Claude sonet-3.7)
+
+Al pulsar en el botón "Aplicar filtro" se debe hacer una llamada al endpoint `images/generate` de la api con los siguientes parámetros multipart/form-data
+
+styleId: el id del filter seleccionado
+originalImage: la imagen seleccionada (image)
+
+# PROMTP (Claude sonet-3.7)
+
+Aplica un estilo liquid glass (similar al de Apple) a `.upload-button` y a `.filter-item__badge`
+
+# PROMTP (Claude sonet-3.7)
+
+Okey, ahora vas a crear la página "mi perfil" de un usuario logueado.
+
+Esta página mostrará sus datos de inicio de sesión y debajo un grid con sus imágenes generadas.
+
+Estas imágenes se obtienen haciendo una consulta a {{base_url}}/images/my-generations?page=0&size=10
+
+# PROMTP (Claude sonet-3.7)
+
+Transforma el listado de estilos (.filter-list) de la home en un slider sólo cuando el usuario no esté logueado.
+
+Usa Swiper.js y haz un slider tipo carrusel
+
+# PROMTP (Claude sonet-3.7)
+
+Crea una página de "Galeria" para usuarios logados. Se accederá haciendo click en el avatar del header.
+
+En la página se mostrará un grid con todas la imágenes generadas por ese usuario.
+
+Las imágenes se obtienen en el endpoint `/images/my-generations`
+
+# PROMTP (Claude sonet-3.7)
+
+al pulsar en `.upload-button` quiero que se muestre un modal ofreciendo la posibilidad de seleccionar "Galeria" o "Cámara" y que modifique las opciones del input de subida de imágenes para que el usuario de móvil pueda subir imágenes desde la galeria o desde la cámara
+
+Aplica estilos liquid cristal al modal
+
+
