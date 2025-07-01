@@ -70,8 +70,12 @@ const Home = () => {
   };
 
   return (
-    <div className="page-container home-container">
-      <Header />
+    <div
+      className={`page-container ${
+        user ? "home-container" : "welcome-container"
+      }`}
+    >
+      <Header loading={isLoading} />
       {!user && (
         <div className="tutorial">
           <h2>Turn your selfie into a WOW! image</h2>
@@ -146,30 +150,37 @@ const Home = () => {
               </>
             ) : (
               <>
-                <h2>Select your filter</h2>
+                <h2>
+                  <a onClick={handleUpload}>Upload your photo</a> and choose the
+                  filter that will <span>make it cool</span>
+                </h2>
                 <FilterList filters={filters} />
               </>
             )}
           </>
         )}
       </main>
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleFileChange}
-        accept="image/*"
-        capture="environment"
-        className="hidden-input"
-        aria-hidden="true"
-      />
-      <button
-        onClick={handleUpload}
-        className="liquid-button upload-button"
-        aria-label="Upload new photo"
-      >
-        <i className="icon icon-camera"></i>
-        <span className="upload-button__text">UPLOAD PHOTO</span>
-      </button>
+      {user && (
+        <>
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            accept="image/*"
+            capture="environment"
+            className="hidden-input"
+            aria-hidden="true"
+          />
+          <button
+            onClick={handleUpload}
+            className="liquid-button upload-button"
+            aria-label="Upload new photo"
+          >
+            <i className="icon icon-camera"></i>
+            <span className="upload-button__text">UPLOAD PHOTO</span>
+          </button>
+        </>
+      )}
     </div>
   );
 };

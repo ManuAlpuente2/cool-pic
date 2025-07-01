@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import "./Avatar.scss";
 
 const Avatar = ({ user, onSignOut }) => {
+  const navigate = useNavigate();
+
   const getInitials = (name) => {
     if (!name) return "?";
     return name
@@ -26,19 +29,29 @@ const Avatar = ({ user, onSignOut }) => {
     return colors[index];
   };
 
+  const handleAvatarClick = () => {
+    navigate("/gallery");
+  };
+
   const displayName = user.name || user.displayName || "User";
   const initials = getInitials(displayName);
   const backgroundColor = getRandomColor(displayName);
 
   return (
     <div className="avatar-container">
-      {user.photoURL ? (
-        <img src={user.photoURL} alt={displayName} className="avatar__image" />
-      ) : (
-        <div className="avatar__initials" style={{ backgroundColor }}>
-          {initials}
-        </div>
-      )}
+      <div className="avatar__clickable" onClick={handleAvatarClick}>
+        {user.photoURL ? (
+          <img
+            src={user.photoURL}
+            alt={displayName}
+            className="avatar__image"
+          />
+        ) : (
+          <div className="avatar__initials" style={{ backgroundColor }}>
+            {initials}
+          </div>
+        )}
+      </div>
       <div className="avatar__dropdown">
         <div className="avatar__info">
           <span className="avatar__name">{displayName}</span>

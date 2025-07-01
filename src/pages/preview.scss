@@ -96,17 +96,25 @@
 .filters-error {
   color: var(--color-error);
 }
-
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 .circles {
   width: 200%;
   aspect-ratio: 1;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 45px;
   transform: translate(-50%, -50%);
 
   > div {
-    animation: growAndFade 4s infinite ease-out;
+    animation: growAndFade 2.5s infinite ease-out;
     background-color: whitesmoke;
     border-radius: 50%;
     height: 100%;
@@ -116,19 +124,19 @@
   }
 
   .circle1 {
-    animation-delay: 1.3s;
+    animation-delay: 1s;
   }
   .circle2 {
-    animation-delay: 2.6s;
+    animation-delay: 1.5s;
   }
   .circle3 {
-    animation-delay: 4s;
+    animation-delay: 2s;
   }
 }
 
 @keyframes growAndFade {
   0% {
-    opacity: 0.25;
+    opacity: 0.1;
     transform: scale(0);
   }
   100% {

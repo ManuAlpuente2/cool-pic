@@ -6,6 +6,8 @@
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 1rem;
+  padding: 0.5rem 2rem;
 
   h1 {
     margin: 0;
@@ -17,6 +19,19 @@
     &:hover {
       color: var(--color-primary);
     }
+  }
+  .logo {
+    width: 130px;
+    display: block;
+    cursor: pointer;
+  }
+}
+
+.header-slot {
+  flex: 1 0 33%;
+  &--end {
+    display: flex;
+    justify-content: flex-end;
   }
 }
 
@@ -30,9 +45,10 @@
   background: rgba(255, 255, 255, 0.1);
   color: var(--color-text);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
   transition: all var(--transition-fast);
+  font-family: "Inter", sans-serif;
 
   &:hover {
     background: var(--gradient-primary);

@@ -70,16 +70,7 @@ const Preview = () => {
 
   return (
     <div className="page-container preview-page">
-      {isGenerating ? (
-        <span className="loading">
-          <div class="circles">
-            <div class="circle1"></div>
-            <div class="circle2"></div>
-            <div class="circle3"></div>
-          </div>
-        </span>
-      ) : null}
-      <Header />
+      <Header loading={isGenerating} />
       <main className="preview-page__content">
         <div className="preview-page__image-container">
           <img
