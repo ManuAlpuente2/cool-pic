@@ -169,6 +169,11 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+  @media (max-width: 480px) {
+    .welcome-container & {
+      display: none;
+    }
+  }
 }
 
 main {

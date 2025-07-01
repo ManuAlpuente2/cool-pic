@@ -39,11 +39,11 @@ const Header = ({ title = "CoolPic", loading = false }) => {
       ) : null}
       <header className="header">
         <div className="header-slot header-slot--start">
-          {isFilterPage ? (
+          {/* isFilterPage ? (
             <button onClick={handleBack} className="header__back-button">
               <span>BACK</span>
             </button>
-          ) : null}
+          ) : null */}
         </div>
         <div className="logo-container" onClick={() => navigate("/")}>
           <Logo className="logo " />
