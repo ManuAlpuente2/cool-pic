@@ -135,7 +135,7 @@ const Home = () => {
           <div className="hero__cta">
             <p className="hero__cta__text">
               <strong>Enhance your photos</strong>: Log in now and get 3 free
-              tokens!
+              credits!
             </p>
             <button
               onClick={() => navigate("/login")}
@@ -151,7 +151,7 @@ const Home = () => {
         {!user && (
           <div className="tutorial">
             <h2>Turn your selfie into a WOW! image</h2>
-            <p>Try now free and get 3 tokens</p>
+            <p>Try now free and get 3 credits</p>
             <button
               onClick={() => navigate("/login")}
               className="button liquid-button"
@@ -163,7 +163,9 @@ const Home = () => {
         )}
         {!user && !isLoading ? (
           <>
-            <h2>Choose from over {filters.length} styles</h2>
+            <h2 className="filters-title">
+              Choose from over {filters.length} styles
+            </h2>
             <FilterSlider filters={filters} />
           </>
         ) : (

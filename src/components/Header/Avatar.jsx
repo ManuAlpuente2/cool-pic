@@ -55,7 +55,7 @@ const Avatar = ({ user, onSignOut }) => {
       <div className="avatar__dropdown">
         <div className="avatar__info">
           <span className="avatar__name">{displayName}</span>
-          {/* <span className="avatar__credits">{user.credits} tokens</span> */}
+          {/* <span className="avatar__credits">{user.credits} credits</span> */}
         </div>
         <button onClick={onSignOut} className="avatar__signout">
           <i className="icon icon-sign-out"></i>

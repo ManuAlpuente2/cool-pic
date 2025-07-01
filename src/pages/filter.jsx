@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 import { Header } from "../components/Header/Header";
+import UploadModal from "../components/UploadModal/UploadModal";
 import FilterSkeleton from "../components/skeletons/FilterSkeleton";
 import { fetchStyles } from "../api/filters";
 import { useAuth } from "../contexts/AuthContext";
@@ -13,6 +15,7 @@ const Filter = () => {
   const [filter, setFilter] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -51,7 +54,29 @@ const Filter = () => {
   const { name, thumbnail, description, popularity, sortOrder } = filter;
 
   const handleUpload = () => {
-    fileInputRef.current?.click();
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSelectGallery = () => {
+    setIsModalOpen(false);
+    // Configurar input para galería
+    if (fileInputRef.current) {
+      fileInputRef.current.removeAttribute("capture");
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleSelectCamera = () => {
+    setIsModalOpen(false);
+    // Configurar input para cámara
+    if (fileInputRef.current) {
+      fileInputRef.current.setAttribute("capture", "environment");
+      fileInputRef.current.click();
+    }
   };
 
   const handleFileChange = (event) => {
@@ -87,7 +112,6 @@ const Filter = () => {
         ref={fileInputRef}
         onChange={handleFileChange}
         accept="image/*"
-        capture="environment"
         className="hidden-input"
         aria-hidden="true"
       />
@@ -115,7 +139,7 @@ const Filter = () => {
 
                   <button
                     className="button liquid-button"
-                    onClick={handleUpload}
+                    onClick={isMobile ? handleUpload : handleSelectGallery}
                     aria-label={`Upload photo to apply filter ${name}`}
                   >
                     <i className="icon icon-camera"></i>
@@ -144,6 +168,15 @@ const Filter = () => {
           </>
         ) : null}
       </main>
+
+      {user && (
+        <UploadModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          onSelectGallery={handleSelectGallery}
+          onSelectCamera={handleSelectCamera}
+        />
+      )}
     </div>
   );
 };

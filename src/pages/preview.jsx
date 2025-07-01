@@ -171,8 +171,8 @@ const Preview = () => {
                     Let's apply the {selectedFilter.name} filter to your photo
                   </h2>
                   <p className="preview-page__tokens">
-                    This will consume 1 token from your balance (you have 3
-                    tokens)
+                    This will consume 1 credit from your balance (you have 3
+                    credits left)
                   </p>
                   <button
                     className="button liquid-button"

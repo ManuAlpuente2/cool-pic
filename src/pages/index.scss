@@ -51,6 +51,9 @@
     .home-container & {
       margin: 0 auto 1rem;
     }
+    &.filters-title {
+      font-size: 1.4rem;
+    }
   }
   a {
     text-decoration: underline;

@@ -14,7 +14,7 @@ const Gallery = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate("/login");
+      navigate("/");
       return;
     }
 
