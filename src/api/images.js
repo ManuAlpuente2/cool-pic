@@ -31,8 +31,8 @@ export const generateImage = async ({ styleId, originalImage }) => {
     const response = await fetch(`${BASE_URL}images/generate-with-image`, {
       method: "POST",
       headers: {
-        /* Authorization: `Bearer ${authData.token}`, */
-        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJkdWNoZTI3QGdtYWlsLmNvbSIsInJvbGUiOiJTVVBFUl9BRE1JTiIsImlhdCI6MTc1MDc4MDY2MiwiZXhwIjoxNzUxNjQ0NjYyfQ.2gKFC_DglgSnbQZnuEzt1enw9kw9x1Uk_K6LHg5C4nvCdz23-h-Or5i0rQsRA_g8zJjdZIPPrFL-BSoyzvh6Jw`,
+        Authorization: `Bearer ${authData.token}`,
+        /* Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJkdWNoZTI3QGdtYWlsLmNvbSIsInJvbGUiOiJTVVBFUl9BRE1JTiIsImlhdCI6MTc1MDc4MDY2MiwiZXhwIjoxNzUxNjQ0NjYyfQ.2gKFC_DglgSnbQZnuEzt1enw9kw9x1Uk_K6LHg5C4nvCdz23-h-Or5i0rQsRA_g8zJjdZIPPrFL-BSoyzvh6Jw`, */
       },
       body: formData,
     });
@@ -68,8 +68,8 @@ export const getMyGenerations = async () => {
     const response = await fetch(`${BASE_URL}images/my-generations?size=5`, {
       method: "GET",
       headers: {
-        /* Authorization: `Bearer ${authData.token}`, */
-        Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJkdWNoZTI3QGdtYWlsLmNvbSIsInJvbGUiOiJTVVBFUl9BRE1JTiIsImlhdCI6MTc1MDc4MDY2MiwiZXhwIjoxNzUxNjQ0NjYyfQ.2gKFC_DglgSnbQZnuEzt1enw9kw9x1Uk_K6LHg5C4nvCdz23-h-Or5i0rQsRA_g8zJjdZIPPrFL-BSoyzvh6Jw`,
+        Authorization: `Bearer ${authData.token}`,
+        /* Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJkdWNoZTI3QGdtYWlsLmNvbSIsInJvbGUiOiJTVVBFUl9BRE1JTiIsImlhdCI6MTc1MDc4MDY2MiwiZXhwIjoxNzUxNjQ0NjYyfQ.2gKFC_DglgSnbQZnuEzt1enw9kw9x1Uk_K6LHg5C4nvCdz23-h-Or5i0rQsRA_g8zJjdZIPPrFL-BSoyzvh6Jw`, */
         "Content-Type": "application/json",
       },
     });
