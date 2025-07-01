@@ -50,6 +50,76 @@
     color: var(--color-text-light);
   }
 
+  &__share-buttons {
+    margin-top: var(--spacing-xl);
+
+    h3 {
+      margin-bottom: var(--spacing-lg);
+      font-size: 1.2rem;
+      color: var(--color-text-light);
+    }
+  }
+
+  &__share-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--spacing-md);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  &__share-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    border-radius: var(--border-radius-lg);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    color: var(--color-text);
+
+    &:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    i {
+      font-size: 1.2rem;
+    }
+
+    &--whatsapp {
+      background: #25d366;
+    }
+
+    &--twitter {
+      background: #1da1f2;
+    }
+
+    &--facebook {
+      background: #1877f2;
+    }
+
+    &--instagram {
+      background: linear-gradient(
+        45deg,
+        #f09433,
+        #e6683c,
+        #dc2743,
+        #cc2366,
+        #bc1888
+      );
+    }
+  }
+
   &__apply-button {
     padding: var(--spacing-md) var(--spacing-xl);
     background: var(--gradient-primary);

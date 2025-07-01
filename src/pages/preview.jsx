@@ -68,6 +68,44 @@ const Preview = () => {
     );
   };
 
+  const handleShare = (platform) => {
+    if (!generatedImage) return;
+
+    const shareText = "Check out my amazing photo created with CoolPic! 🎨✨";
+    const shareUrl = window.location.href;
+
+    let shareLink = "";
+
+    switch (platform) {
+      case "whatsapp":
+        shareLink = `https://wa.me/?text=${encodeURIComponent(
+          shareText + " " + shareUrl
+        )}`;
+        break;
+      case "twitter":
+        shareLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+          shareText
+        )}&url=${encodeURIComponent(shareUrl)}`;
+        break;
+      case "facebook":
+        shareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+          shareUrl
+        )}`;
+        break;
+      case "instagram":
+        // Instagram no permite compartir directamente desde web
+        // Copiamos el enlace al portapapeles
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          alert("Link copied to clipboard! You can now paste it in Instagram.");
+        });
+        return;
+      default:
+        return;
+    }
+
+    window.open(shareLink, "_blank", "width=600,height=400");
+  };
+
   return (
     <div className="page-container preview-page">
       <Header loading={isGenerating} />
@@ -91,7 +129,41 @@ const Preview = () => {
         {selectedFilter ? (
           <div className="preview-page__filter-info">
             {generatedImage ? (
-              <h2>WOW! It turned out great!</h2>
+              <>
+                <h2>WOW! It turned out great!</h2>
+                {/* <div className="preview-page__share-buttons">
+                  <h3>Share your amazing photo!</h3>
+                  <div className="preview-page__share-grid">
+                    <button
+                      className="preview-page__share-button preview-page__share-button--whatsapp"
+                      onClick={() => handleShare("whatsapp")}
+                    >
+                      <i className="icon icon-whatsapp"></i>
+                      WhatsApp
+                    </button>
+                    <button
+                      className="preview-page__share-button preview-page__share-button--twitter"
+                      onClick={() => handleShare("twitter")}
+                    >
+                      <i className="icon icon-twitter"></i>X (Twitter)
+                    </button>
+                    <button
+                      className="preview-page__share-button preview-page__share-button--facebook"
+                      onClick={() => handleShare("facebook")}
+                    >
+                      <i className="icon icon-facebook"></i>
+                      Facebook
+                    </button>
+                    <button
+                      className="preview-page__share-button preview-page__share-button--instagram"
+                      onClick={() => handleShare("instagram")}
+                    >
+                      <i className="icon icon-instagram"></i>
+                      Instagram
+                    </button>
+                  </div>
+                </div> */}
+              </>
             ) : (
               <>
                 <h2>
