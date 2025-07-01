@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'coolpic';
   src:
-    url('fonts/coolpic.ttf?b86g32') format('truetype'),
-    url('fonts/coolpic.woff?b86g32') format('woff'),
-    url('fonts/coolpic.svg?b86g32#coolpic') format('svg');
+    url('fonts/coolpic.ttf?544w19') format('truetype'),
+    url('fonts/coolpic.woff?544w19') format('woff'),
+    url('fonts/coolpic.svg?544w19#coolpic') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -29,6 +29,12 @@
 }
 .icon-file_upload:before {
   content: "\e901";
+}
+.icon-clear:before {
+  content: "\e902";
+}
+.icon-fire:before {
+  content: "\e9a9";
 }
 .icon-question:before {
   content: "\f128";
@@ -62,7 +68,4 @@
 }
 .icon-file-picture-o:before {
   content: "\f1c5";
-}
-.icon-fire:before {
-  content: "\e9a9";
 }

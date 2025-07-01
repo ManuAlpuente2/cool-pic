@@ -1,10 +1,12 @@
 import { useRef, useState, useEffect } from "react";
+import { isMobile } from "react-device-detect";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { auth } from "../lib/firebase";
 import { FilterList } from "../components/filters/FilterList";
 import { FilterSlider } from "../components/filters/FilterSlider";
 import { Header } from "../components/Header/Header";
+import UploadModal from "../components/UploadModal/UploadModal";
 import { fetchStyles } from "../api/filters";
 import startImg from "../mocks/img/start.png";
 import filterImg from "../mocks/img/filter.png";
@@ -19,6 +21,7 @@ const Home = () => {
   const [filters, setFilters] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const loadFilters = async () => {
@@ -44,7 +47,29 @@ const Home = () => {
   };
 
   const handleUpload = () => {
-    fileInputRef.current?.click();
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSelectGallery = () => {
+    setIsModalOpen(false);
+    // Configurar input para galería
+    if (fileInputRef.current) {
+      fileInputRef.current.removeAttribute("capture");
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleSelectCamera = () => {
+    setIsModalOpen(false);
+    // Configurar input para cámara
+    if (fileInputRef.current) {
+      fileInputRef.current.setAttribute("capture", "environment");
+      fileInputRef.current.click();
+    }
   };
 
   const handleFileChange = (event) => {
@@ -169,13 +194,20 @@ const Home = () => {
             aria-hidden="true"
           />
           <button
-            onClick={handleUpload}
+            onClick={isMobile ? handleUpload : handleSelectGallery}
             className="liquid-button upload-button"
             aria-label="Upload new photo"
           >
             <i className="icon icon-camera"></i>
             <span className="upload-button__text">UPLOAD PHOTO</span>
           </button>
+
+          <UploadModal
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            onSelectGallery={handleSelectGallery}
+            onSelectCamera={handleSelectCamera}
+          />
         </>
       )}
     </div>
