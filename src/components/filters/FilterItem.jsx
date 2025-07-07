@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { getImageSrc } from "../../lib/imageUtils";
 import "./FilterItem.scss";
 
 export const FilterItem = ({ filter, onSelect }) => {
@@ -19,7 +20,7 @@ export const FilterItem = ({ filter, onSelect }) => {
     <article className="filter-item" onClick={handleClick}>
       <div className="filter-item__image-wrapper">
         <img
-          src={`data:image/png;base64,${thumbnail}`}
+          src={getImageSrc(thumbnail)}
           alt={`Vista previa del filtro ${name}`}
           className="filter-item__image"
         />

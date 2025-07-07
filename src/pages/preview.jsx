@@ -4,6 +4,7 @@ import { Header } from "../components/Header/Header";
 import { FilterList } from "../components/filters/FilterList";
 import { fetchStyles } from "../api/filters";
 import { generateImage } from "../api/images";
+import { getImageSrc } from "../lib/imageUtils";
 import "./preview.scss";
 
 const Preview = () => {
@@ -64,7 +65,7 @@ const Preview = () => {
 
     console.log("Imagen generada:", result.generation.generatedImage);
     setGeneratedImage(
-      `data:image/png;base64,${result.generation.generatedImage}`
+      getImageSrc(result.generation.generatedImage, "image/png")
     );
   };
 
@@ -120,7 +121,7 @@ const Preview = () => {
             {/* Mostrar una imagen en miniatura del filtro que se va a aplicar */}
             {selectedFilter?.thumbnail && !generatedImage ? (
               <img
-                src={`data:image/jpeg;base64,${selectedFilter.thumbnail}`}
+                src={getImageSrc(selectedFilter.thumbnail, "image/jpeg")}
                 alt={selectedFilter.name}
                 className="preview-page__filter-thumbnail"
               />

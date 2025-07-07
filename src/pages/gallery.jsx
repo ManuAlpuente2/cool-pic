@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Header } from "../components/Header/Header";
 import { getMyGenerations } from "../api/images";
+import { getImageSrc } from "../lib/imageUtils";
 import "./gallery.scss";
 
 const Gallery = () => {
@@ -90,7 +91,7 @@ const Gallery = () => {
                 onClick={() => handleImageClick(image)}
               >
                 <img
-                  src={`data:image/jpeg;base64,${image.generatedImage}`}
+                  src={getImageSrc(image.generatedImage, "image/jpeg")}
                   alt={image.prompt || "Imagen generada"}
                   className="gallery-item__image"
                   loading="lazy"

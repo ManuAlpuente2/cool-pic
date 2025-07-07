@@ -6,6 +6,7 @@ import UploadModal from "../components/UploadModal/UploadModal";
 import FilterSkeleton from "../components/skeletons/FilterSkeleton";
 import { fetchStyles } from "../api/filters";
 import { useAuth } from "../contexts/AuthContext";
+import { getImageSrc } from "../lib/imageUtils";
 import "./filter.scss";
 
 const Filter = () => {
@@ -122,7 +123,7 @@ const Filter = () => {
             <h1 className="filter-page__title">{name}</h1>
             <div className="filter-page__preview">
               <img
-                src={`data:image/jpeg;base64,${thumbnail}`}
+                src={getImageSrc(thumbnail, "image/jpeg")}
                 alt={`Preview of filter ${name}`}
                 className="filter-page__image"
               />
